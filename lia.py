@@ -48,10 +48,10 @@ Quando o objetivo estiver concluído, use:
             {"role": "system", "content": self.system_prompt},
             {
                 "role": "user",
-                "content": f"Objetivo: {goal}
+                "content": "Objetivo: " + goal + "
 
 Histórico:
-{history}
+" + history + "
 
 Responda em JSON válido.",
             },
@@ -99,7 +99,7 @@ Responda em JSON válido.",
                 result = f"Ferramenta '{action}' não encontrada."
             else:
                 try:
-                    if tool_input == "NONE" or tool_input == "":
+                    if tool_input in ("NONE", ""):
                         result = tool_fn()
                     else:
                         result = tool_fn(tool_input)
